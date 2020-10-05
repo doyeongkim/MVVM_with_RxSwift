@@ -71,13 +71,21 @@
 			isa = PBXGroup;
 			children = (
 				DB12A3EE25077A8400814A4C /* AppDelegate.swift */,
-				DB981F00251CBB6000E6C69C /* MVVMEx1ViewController.swift */,
-				DB981F02251CC47300E6C69C /* MVVMEx1ViewModel.swift */,
+				DB1E053D252B007D00ED2880 /* Ex1 */,
 				DB12A3F725077A8500814A4C /* Assets.xcassets */,
 				DB12A3F925077A8500814A4C /* LaunchScreen.storyboard */,
 				DB12A3FC25077A8500814A4C /* Info.plist */,
 			);
 			path = MVVMwithRxSwift;
+			sourceTree = "<group>";
+		};
+		DB1E053D252B007D00ED2880 /* Ex1 */ = {
+			isa = PBXGroup;
+			children = (
+				DB981F00251CBB6000E6C69C /* MVVMEx1ViewController.swift */,
+				DB981F02251CC47300E6C69C /* MVVMEx1ViewModel.swift */,
+			);
+			path = Ex1;
 			sourceTree = "<group>";
 		};
 		F24B7417F45D9EBC31E38D63 /* Frameworks */ = {
