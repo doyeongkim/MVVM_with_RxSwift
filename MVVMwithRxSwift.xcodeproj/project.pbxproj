@@ -11,6 +11,7 @@
 		DB12A3EF25077A8400814A4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB12A3EE25077A8400814A4C /* AppDelegate.swift */; };
 		DB12A3F825077A8500814A4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB12A3F725077A8500814A4C /* Assets.xcassets */; };
 		DB12A3FB25077A8500814A4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB12A3F925077A8500814A4C /* LaunchScreen.storyboard */; };
+		DB2DEC4C2538430B004EBF08 /* ObservableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2DEC4B2538430B004EBF08 /* ObservableController.swift */; };
 		DB981F01251CBB6000E6C69C /* MVVMEx1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB981F00251CBB6000E6C69C /* MVVMEx1ViewController.swift */; };
 		DB981F03251CC47300E6C69C /* MVVMEx1ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB981F02251CC47300E6C69C /* MVVMEx1ViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -23,6 +24,7 @@
 		DB12A3F725077A8500814A4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB12A3FA25077A8500814A4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB12A3FC25077A8500814A4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB2DEC4B2538430B004EBF08 /* ObservableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableController.swift; sourceTree = "<group>"; };
 		DB981F00251CBB6000E6C69C /* MVVMEx1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMEx1ViewController.swift; sourceTree = "<group>"; };
 		DB981F02251CC47300E6C69C /* MVVMEx1ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMEx1ViewModel.swift; sourceTree = "<group>"; };
 		EECD413815393529BD19FD72 /* Pods_MVVMwithRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVMwithRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 			children = (
 				DB12A3EE25077A8400814A4C /* AppDelegate.swift */,
 				DB1E053D252B007D00ED2880 /* Ex1 */,
+				DB2DEC4A253842E0004EBF08 /* Observable */,
 				DB12A3F725077A8500814A4C /* Assets.xcassets */,
 				DB12A3F925077A8500814A4C /* LaunchScreen.storyboard */,
 				DB12A3FC25077A8500814A4C /* Info.plist */,
@@ -86,6 +89,14 @@
 				DB981F02251CC47300E6C69C /* MVVMEx1ViewModel.swift */,
 			);
 			path = Ex1;
+			sourceTree = "<group>";
+		};
+		DB2DEC4A253842E0004EBF08 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				DB2DEC4B2538430B004EBF08 /* ObservableController.swift */,
+			);
+			path = Observable;
 			sourceTree = "<group>";
 		};
 		F24B7417F45D9EBC31E38D63 /* Frameworks */ = {
@@ -212,6 +223,7 @@
 			files = (
 				DB12A3EF25077A8400814A4C /* AppDelegate.swift in Sources */,
 				DB981F03251CC47300E6C69C /* MVVMEx1ViewModel.swift in Sources */,
+				DB2DEC4C2538430B004EBF08 /* ObservableController.swift in Sources */,
 				DB981F01251CBB6000E6C69C /* MVVMEx1ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
