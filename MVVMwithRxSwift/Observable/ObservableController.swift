@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 class ObservableController: UIViewController {
+    private let tableView = UITableView()
     private let button = UIButton()
     private let imageView = UIImageView()
 
@@ -24,6 +25,11 @@ class ObservableController: UIViewController {
 
     private func configure() {
         view.backgroundColor = .white
+
+        tableView.rowHeight = 40
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(tableView)
 
         button.setTitle("Button", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -81,48 +87,66 @@ class ObservableController: UIViewController {
 //            .disposed(by: disposeBag)
 
         // Map3
-//        Observable.just("800x600")
-//            .map { $0.replacingOccurrences(of: "x", with: "/") }
-//            .map { "https://picsum.photos/\($0)/?random" }
-//            .map { URL(string: $0) }
-//            .filter { $0 != nil }
-//            .map { $0! }
-//            .map { try Data(contentsOf: $0) }
-//            .map { UIImage (data: $0) }
-//            .subscribe(onNext: { [weak self] image in
-//                self?.imageView.image = image
-//            })
-//            .disposed(by: disposeBag)
+        Observable.just("800x600")
+            .map { $0.replacingOccurrences(of: "x", with: "/") }
+            .map { "https://picsum.photos/\($0)/?random" }
+            .map { URL(string: $0) }
+            .filter { $0 != nil }
+            .map { $0! }
 
-        // Subscribe
-        Observable.from(["RxSwift", "In", 4, "Hours"])
-//            .single()  // error
-//            .subscribe { event in
-//                print("suscribe started")
-//                switch event {
-//                case .next(let str):
-//                    print("next: ", str)
-//                case .error(let error):
-//                    print("error: ", error.localizedDescription)
-//                case .completed:
-//                    print("completed")
-//                }
-//            }
-//            .disposed(by: disposeBag)
+            // (concurrency thread에서 실행되도록)
+            // observeOn은 그 다음줄부터 영향을 미침
+//            .observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
+            .map { try Data(contentsOf: $0) }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .default)) // observeOn과 달리 아무곳에다 놓고 써도 상관 무 (subscribe될때부터 적용한다는 뜻이기 때문에)
 
-            .subscribe(onNext: { s in
-                print(s)
-            }, onError: { error in
-                print(error.localizedDescription)
-            }, onCompleted: {
-                print("completed")
-            }, onDisposed: {
-                print("disposed")  // complete된 경우 or error난 경우
+            .map { UIImage (data: $0) }
+
+            // side-effect는 .do 나 .subscribe에서 (밖에서 영향을 미치는 작업들)
+            .do(onNext: { image in
+                print(image?.size ?? 0)
+            })
+
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] image in
+                self?.imageView.image = image
             })
             .disposed(by: disposeBag)
+
+        // Subscribe
+//        Observable.from(["RxSwift", "In", 4, "Hours"])
+////            .single()  // error
+//
+////            .subscribe { event in
+////                print("suscribe started")
+////                switch event {
+////                case .next(let str):
+////                    print("next: ", str)
+////                case .error(let error):
+////                    print("error: ", error.localizedDescription)
+////                case .completed:
+////                    print("completed")
+////                }
+////            }
+////            .disposed(by: disposeBag)
+//
+//            .subscribe(onNext: { s in
+//                print(s)
+//            }, onError: { error in
+//                print(error.localizedDescription)
+//            }, onCompleted: {
+//                print("completed")
+//            }, onDisposed: {
+//                print("disposed")  // complete된 경우 or error난 경우
+//            })
+//            .disposed(by: disposeBag)
     }
 
     private func setAutolayout() {
+        tableView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+
         button.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
@@ -132,5 +156,15 @@ class ObservableController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(300)
         }
+    }
+}
+
+extension ObservableController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
