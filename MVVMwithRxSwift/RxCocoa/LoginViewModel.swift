@@ -27,16 +27,6 @@ class LoginViewModel {
             .bind(to: isPasswordValid)
     }
 
-//    func setEmailText(_ email: String) {
-//        let isValid = checkEmailValid(email)
-//        isEmailValid.onNext(isValid)
-//    }
-
-//    func setPasswordText(_ pw: String) {
-//        let isValid = checkPasswordValid(pw)
-//        isPasswordValid.onNext(isValid)
-//    }
-
     private func checkEmailValid(_ email: String) -> Bool {
         return email.contains("@") && email.contains(".")
     }

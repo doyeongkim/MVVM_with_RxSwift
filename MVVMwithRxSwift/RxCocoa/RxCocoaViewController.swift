@@ -85,6 +85,10 @@ class RxCocoaViewController: UIViewController {
             .disposed(by: disposeBag)
 
         Observable.combineLatest(viewModel.isEmailValid, viewModel.isPasswordValid) { $0 && $1 }
+//            .asDriver(onErrorJustReturn: false)
+//            .drive(onNext: { [weak self] value in
+//                self?.loginButton.isEnabled = value
+//            })
             .bind(to: loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
